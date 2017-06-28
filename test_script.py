@@ -47,9 +47,10 @@ y_ = tf.constant(labels)
 
 target_fun = tf.reduce_mean(tf.squared_difference(y,y_))
 
-train_step = tf.train_GradientDescentOptimizer(0.5).minimize(target_fun)
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(target_fun)
 
 with tf.Session() as sess:
-	tf.initialize_all_variables().run()
+	tf.global_variables_initializer().run()
 	for _ in range(1000):
 		sess.run(train_step)
+	print(y.eval())
